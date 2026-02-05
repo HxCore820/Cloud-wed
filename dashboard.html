@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CloudVPS</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-cloud"></i>
+            <span>CloudVPS</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#tasks" class="nav-item">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+            </a>
+            <a href="#vps" class="nav-item">
+                <i class="fas fa-server"></i>
+                <span>VPS</span>
+            </a>
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <h1>Welcome Back!</h1>
+            <div class="topbar-right">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="user-profile">
+                    <img id="userAvatar" src="https://via.placeholder.com/40" alt="User">
+                    <span id="userName">Jason Torraan</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Points & Time Section -->
+            <div class="info-cards">
+                <div class="info-card points-card">
+                    <h3>Points Balance:</h3>
+                    <div class="points-display">
+                        <span class="points-value" id="pointsBalance">1,250</span>
+                        <span class="points-unit">pts</span>
+                    </div>
+                    <button class="btn-earn-more">
+                        <i class="fas fa-plus"></i> Earn More
+                    </button>
+                </div>
+
+                <div class="info-card time-card">
+                    <h3>Free Time Remaining:</h3>
+                    <div class="time-display" id="timeRemaining">05:28:45</div>
+                    <button class="btn-extend" id="btnExtend">
+                        <i class="fas fa-clock"></i> Extend
+                    </button>
+                </div>
+            </div>
+
+            <!-- VPS Stats -->
+            <div class="vps-stats">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-microchip"></i>
+                        <span>CPU Usage</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="circular-progress">
+                            <svg width="120" height="120">
+                                <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
+                                <circle cx="60" cy="60" r="54" class="progress-bar" id="cpuProgress"></circle>
+                            </svg>
+                            <div class="progress-text">
+                                <span id="cpuValue">25</span>%
+                            </div>
+                        </div>
+                        <div class="wave-line">
+                            <svg width="100" height="30" viewBox="0 0 100 30">
+                                <path d="M0,15 Q10,5 20,15 T40,15 T60,15 T80,15 T100,15" stroke="#4f9eff" fill="none" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-memory"></i>
+                        <span>RAM Usage</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="usage-text">
+                            <span class="usage-current" id="ramUsed">2.5</span>
+                            <span class="usage-total">GB / 8 GB</span>
+                        </div>
+                        <div class="progress-bar-horizontal">
+                            <div class="progress-fill-horizontal" id="ramProgress" style="width: 31.25%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-hdd"></i>
+                        <span>Storage</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="usage-text">
+                            <span class="usage-current" id="storageUsed">30</span>
+                            <span class="usage-total">GB / 50 GB</span>
+                        </div>
+                        <div class="progress-bar-horizontal">
+                            <div class="progress-fill-horizontal storage" id="storageProgress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-clock"></i>
+                        <span>Time Left</span>
+                    </div>
+                    <div class="stat-body">
+                        <ul class="time-list">
+                            <li>
+                                <i class="fas fa-check-circle" style="color: #10b981"></i>
+                                <span>55 pts</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-play-circle" style="color: #4f9eff"></i>
+                                <span>Watched Ad</span>
+                                <span class="arrow">→ ?</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-link" style="color: #f59e0b"></i>
+                                <span>Short Link Completed</span>
+                                <span class="arrow">→ ?</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-trophy" style="color: #8b5cf6"></i>
+                                <span>Daily Bonus Achieved</span>
+                                <span class="arrow">→ ?</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VPS Control Buttons -->
+            <div class="vps-controls">
+                <button class="btn-control btn-create" id="btnCreateVPS">
+                    <i class="fas fa-plus-circle"></i> Create VPS
+                </button>
+                <button class="btn-control btn-stop" id="btnStopVPS">
+                    <i class="fas fa-stop-circle"></i> Stop VPS
+                </button>
+                <button class="btn-control btn-extend-time" id="btnExtendTime">
+                    <i class="fas fa-clock"></i> Extend Time
+                </button>
+            </div>
+
+            <!-- Provider Logos -->
+            <div class="providers">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" height="30">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" alt="Google Cloud" height="30">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" alt="DigitalOcean" height="30">
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Watch Ad Modal -->
+    <div class="modal" id="adModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Watch Video Ad</h2>
+                <span class="close" data-modal="adModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="ad-container">
+                    <p>Video advertisement would play here</p>
+                    <p class="ad-timer">Please wait <span id="adTimer">15</span> seconds...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="completeAdBtn" disabled>
+                    <i class="fas fa-check"></i> Complete (+5 pts)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Short Link Modal -->
+    <div class="modal" id="linkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Complete Short Link</h2>
+                <span class="close" data-modal="linkModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="link-container">
+                    <p>Click the link below and stay for 10 seconds</p>
+                    <a href="#" class="short-link" id="shortLink" target="_blank">
+                        https://short.link/example123
+                    </a>
+                    <p class="link-timer">Waiting... <span id="linkTimer">0</span>/10 seconds</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="completeLinkBtn" disabled>
+                    <i class="fas fa-check"></i> Complete (+2 pts)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create VPS Modal -->
+    <div class="modal" id="createVPSModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Create New VPS</h2>
+                <span class="close" data-modal="createVPSModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="createVPSForm">
+                    <div class="form-group">
+                        <label>Operating System</label>
+                        <select id="osVersion" class="form-control">
+                            <option value="2025">Windows Server 2025 (Docker - 4vCPU | 8GB RAM)</option>
+                            <option value="2022">Windows Server 2022 (Docker - 4vCPU | 8GB RAM)</option>
+                            <option value="2019">Windows Server 2019 (Docker - 4vCPU | 8GB RAM)</option>
+                            <option value="2012">Windows Server 2012 (Docker - 4vCPU | 8GB RAM)</option>
+                            <option value="11">Windows 11 Professional (Docker - 4vCPU | 8GB RAM)</option>
+                            <option value="10">Windows 10 Professional (Docker - 4vCPU | 8GB RAM)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Language</label>
+                        <select id="language" class="form-control">
+                            <option value="English">English</option>
+                            <option value="Tiếng Việt">Tiếng Việt</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <div class="duration-options">
+                            <button type="button" class="duration-btn active" data-hours="6" data-cost="300">
+                                6 Hours<br><small>300 pts</small>
+                            </button>
+                            <button type="button" class="duration-btn" data-hours="12" data-cost="550">
+                                12 Hours<br><small>550 pts</small>
+                            </button>
+                            <button type="button" class="duration-btn" data-hours="24" data-cost="1000">
+                                24 Hours<br><small>1000 pts</small>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="vps-cost">
+                        <p>Cost: <strong id="vpsCost">300</strong> points</p>
+                        <p>Your Balance: <strong id="modalPointsBalance">1,250</strong> points</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="createVPSModal">Cancel</button>
+                <button class="btn btn-primary" id="confirmCreateVPS">
+                    <i class="fas fa-rocket"></i> Create VPS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VPS Info Modal -->
+    <div class="modal" id="vpsInfoModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>VPS Connection Information</h2>
+                <span class="close" data-modal="vpsInfoModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="vps-info">
+                    <div class="info-section">
+                        <h3><i class="fas fa-desktop"></i> Remote Desktop Connection (RDP)</h3>
+                        <div class="info-row">
+                            <span class="info-label">Public IP:</span>
+                            <span class="info-value" id="rdpIP">192.168.1.100:3389</span>
+                            <button class="btn-copy" data-copy="rdpIP">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Username:</span>
+                            <span class="info-value">Admin</span>
+                            <button class="btn-copy" data-copy-text="Admin">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Password:</span>
+                            <span class="info-value">Window@123456</span>
+                            <button class="btn-copy" data-copy-text="Window@123456">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">RDP Port:</span>
+                            <span class="info-value">3389</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3><i class="fas fa-globe"></i> Web Viewer (Monitor Installation)</h3>
+                        <div class="info-row">
+                            <span class="info-label">Web Address:</span>
+                            <span class="info-value" id="webURL">http://192.168.1.100:8006</span>
+                            <button class="btn-copy" data-copy="webURL">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Port:</span>
+                            <span class="info-value">8006</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3><i class="fas fa-server"></i> System Resources</h3>
+                        <div class="info-row">
+                            <span class="info-label">CPU:</span>
+                            <span class="info-value">4 vCPU</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">RAM:</span>
+                            <span class="info-value">8GB</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Storage:</span>
+                            <span class="info-value">60GB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-modal="vpsInfoModal">
+                    <i class="fas fa-check"></i> Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase & App Logic -->
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
